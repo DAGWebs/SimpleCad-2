@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Welcome Email</title>
+</head>
+<body style="background: #000; margin: 0; padding: 0;">
+	<div style="text-align: center; background-color: #fff; padding: 10px; border-bottom: 2px solid darkgray;"><h1>Thanks for using SimpleCad!</h1></div>
+	<div style="width: 90%; background: #fff; margin: 20px auto;">
+		<div style="background: #222; padding: 10px;">
+			<h3 style="text-align: center; color: #fff;">Admin Details</h3>
+		</div>
+		<div style="padding: 10px;">
+			<p>Username: ' . $admin_username . '</p>
+			<p>Email: ' . $admin_email . '</p>
+			<p>Password: <span style="color: darkred">Due to security we dont provide this through email!</span></p>
+			<p>Because you have registered as an administrator your account was auto approved. If you have any questions feel free to look up our documentation.</p>
+		</div>
+	</div>
+	<div style="width: 90%; background: #fff; margin: 20px auto;">
+		<div style="background: #222; padding: 10px;">
+			<h3 style="text-align: center; color: #fff;">Setting Details</h3>
+		</div>
+		<div style="padding: 10px;">
+			<p>Database Host: ' . $db_host . '</p>
+			<p>Database Username: ' . $db_user . '</p>
+			<p>Database Host: ' . $db_host . '</p>
+			<p>Database Password: <span style="color: darkred">Due to security we dont provide this through email!</span></p>
+			<p>Community Name: ' . $cad_name . '</p>
+			<p>' . $cad_about . '</p>
+		</div>
+	</div>
+	<div style="width: 90%; background: #fff; margin: 20px auto;">
+		<div style="background: #222; padding: 10px;">
+			<h3 style="text-align: center; color: #fff;">About SimpleCad</h3>
+		</div>
+		<div style="padding: 10px;">
+			<p>Developed By: dTech Development</p>
+			<p>Email: support@daghq.com</p>
+			<a href="#" style="background: #222; border: none; text-decoration: none; padding: 5px; color: #fff; box-shadow: 4px 4px 4px black;">Find out More!</a>
+			<p>SimpleCad is a cad that has been developed by dTech Development, a sub division under the DarkArts Gaming Community. We develop technologies from discord bots to websites. we are always looking for more talented peopled to join us.</p>
+		</div>
+	</div>
+</body>
+</html>
