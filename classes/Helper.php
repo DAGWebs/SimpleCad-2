@@ -36,11 +36,19 @@
 			return htmlentities($string, ENT_QUOTES, 'UTF-8');
 		}
 
+		public static function isLoggedin() {
+			if(isset($_COOKIE['user_is_loggedin']) || isset($_SESSION['user_is_loggedin'])) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
 		/*=======================================
 		=            Email Functions            =
 		=======================================*/
 		
-		public static function sendMail($to, $subject, $body, $reply=['accounts@txstaterp.com' => 'SimpleCad Support'], $debug=2, $from=['accounts@txstaterp.com' => 'SimpleCad'], $host='mail.txstaterp.com', $user='accounts@txstaterp.com', $password='Cartarman1', $port='465') {
+		public static function sendMail($to, $subject, $body, $protocal='ssl', $reply=['support@daghq.com' => 'SimpleCad Support'], $debug=2, $from=['support@daghq.com' => 'SimpleCad'], $host='mail.daghq.com', $user='support@daghq.com', $password='Cartarman1', $port='465') {
 			// Load Composer's autoloader
 			require 'vendor/autoload.php';
 
@@ -55,7 +63,7 @@
 			    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
 			    $mail->Username   = $user;                     // SMTP username
 			    $mail->Password   = $password;                               // SMTP password
-			    $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
+			    $mail->SMTPSecure = $protocal;                                  // Enable TLS encryption, `ssl` also accepted
 			    $mail->Port       = $port;                                    // TCP port to connect to
 
 			    //Recipients
@@ -84,8 +92,9 @@
 			    $mail->Subject = $subject;
 			    $mail->Body    = $body;
 
-			    $mail->send();
-			    return true;
+			    if($mail->send()) {
+			    	return true;
+			    }
 			} catch (Exception $e) {
 			    return false;
 			}
