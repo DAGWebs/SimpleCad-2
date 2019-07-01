@@ -5,7 +5,14 @@
 				<p class="text-light">SimpleCad <small>Developed by: <a href="#">dTech Development</a></small></p>
 			</div>
 			<div class="col-6">
-				<p class="text-light text-center">copyright &copy; 2019 SimpleCad</p>
+
+				<p class="text-light text-center">copyright &copy; 
+					<?php if($_SERVER['PHP_SELF'] !== ROOT . 'setup.php') {
+						echo "2019 " . SITE_NAME;
+					} else {
+						echo "2019 SimpleCad";
+					} ?>
+				</p>
 			</div>
 		</div>
 	</div>

@@ -2,9 +2,9 @@
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\Exception;
 	class Helper {
-		public static function Redirect($location) {
+		public static function Redirect($location, $variables='') {
 			if(file_exists($location . ".php")) {
-				return header("Location: {$location}.php");
+				return header("Location: {$location}.php{$variables}");
 			} else {
 				return header("Location: error404.php");
 			}
@@ -16,9 +16,12 @@
 
 		public static function getPageTitle() {
 			if(file_exists("config/config.php")) {
-				$title = $_SERVER['RQUEST_URI'];
-				$title = rtrim($title, ROOT);
-				echo SITE_TITLE . " | " . $title;
+				$title = $_SERVER['REQUEST_URI'];
+				$title = ltrim($title, ROOT);
+				$title = rtrim($title, '.php');
+				$title = ucfirst($title);
+				global $page;
+				echo SITE_NAME . " | " . $page;
 			} else {
 				echo "SimpleCad Setup";
 			}
@@ -26,7 +29,7 @@
 
 		public static function getPageName() {
 			if(file_exists("config/config.php")) {
-				echo SITE_TITLE;
+				echo SITE_NAME;
 			} else {
 				echo "SimpleCad Setup";
 			}
@@ -48,7 +51,7 @@
 		=            Email Functions            =
 		=======================================*/
 		
-		public static function sendMail($to, $subject, $body, $protocal='ssl', $reply=['support@daghq.com' => 'SimpleCad Support'], $debug=2, $from=['support@daghq.com' => 'SimpleCad'], $host='mail.daghq.com', $user='support@daghq.com', $password='Cartarman1', $port='465') {
+		public static function sendMail($to, $subject, $body, $protocal='ssl', $reply=['support@daghq.com' => 'SimpleCad Support'], $debug=0, $from=['support@daghq.com' => 'SimpleCad'], $host='mail.daghq.com', $user='support@daghq.com', $password='Cartarman1', $port='465') {
 			// Load Composer's autoloader
 			require 'vendor/autoload.php';
 
@@ -92,9 +95,7 @@
 			    $mail->Subject = $subject;
 			    $mail->Body    = $body;
 
-			    if($mail->send()) {
-			    	return true;
-			    }
+			    $mail->send();
 			} catch (Exception $e) {
 			    return false;
 			}

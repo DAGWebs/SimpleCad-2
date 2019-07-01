@@ -7,12 +7,13 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<!-- fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display|Poppins|Rubik+Mono+One&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Herr+Von+Muellerhoff&display=swap" rel="stylesheet">
 	<!-- icons -->
 	<script src="https://kit.fontawesome.com/85bf85c043.js"></script>
 	<!-- my styles -->
 	<link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body style="min-height: 100vh;">
 	
 <header class="bg-dark">
 	<div class="container">
@@ -22,6 +23,10 @@
 					<?php  
 						if($_SERVER['REQUEST_URI'] === ROOT . 'setup.php') {
 							echo "Welcome: Server Owner"; 
+						} else if(!Helper::isLoggedin()) {
+							echo "Welcome: Guest";
+						} else {
+							echo "Welcome Back: " . $username;
 						}
 					?>
 				</button>

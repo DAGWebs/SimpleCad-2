@@ -1,6 +1,4 @@
 <?php 
-	// use PHPMailer\PHPMailer\PHPMailer;
-	// use PHPMailer\PHPMailer\Exception;
 	class Setup {
 		public static function runSetup() {
 			if(isset($_POST['run_setup'])) {
@@ -100,7 +98,7 @@
 					if($db_pass === "NO PASSWORD") {
 						$db_pass = '';
 					}
-					$config = "<?php";
+					$config = "<?php\n";
 					$config .= "//Created DATABASE CONFIG\n";
 					$config .= "define('DB_HOST', '{$db_host}');\n";
 					$config .= "define('DB_USER', '{$db_user}');\n";
@@ -176,39 +174,7 @@
 									$to = $admin_email;
 
 									
-					// require 'vendor/autoload.php';
-
-					// // Instantiation and passing `true` enables exceptions
-					// $mail = new PHPMailer(true);
-
-					// try {
-					//     //Server settings
-					//     $mail->SMTPDebug = $debug;                                       // Enable verbose debug output
-					//     $mail->isSMTP();                                            // Set mailer to use SMTP
-					//     $mail->Host       = "mail.daghq.com";  // Specify main and backup SMTP servers
-					//     $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-					//     $mail->Username   = "support@daghq.com";                     // SMTP username
-					//     $mail->Password   = "Cartarman1";                               // SMTP password
-					//     $mail->SMTPSecure = 'ssl';                                  // Enable TLS encryption, `ssl` also accepted
-					//     $mail->Port       = 465;                                    // TCP port to connect to
-
-					//     //Recipients
-					//     $mail->setFrom("support@daghq.com", "SimpleCad Support");
-					//     $mail->addAddress($admin_email);     // Add a recipient
-					//    	$mail->addReplyTo("support@daghq.com", "SimpleCad Support");
-					   
-
-					//     // Content
-					//     $mail->isHTML(true);                                  // Set email format to HTML
-					//     $mail->Subject = $subject;
-					//     $mail->Body    = $body;
-
-					//     if($mail->send()) {
-					//     	Helper::Redirect('index');
-					//     }
-					// } catch (Exception $e) {
-					    
-					// }
+					
 
 					if(Helper::sendMail($to, $subject, $body)) {
 						Helper::Redirect("index");
