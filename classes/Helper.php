@@ -40,7 +40,7 @@
 		=            Email Functions            =
 		=======================================*/
 		
-		public static function sendMail($to, $subject, $body, $reply=['support@daghq.com' => 'SimpleCad Support'], $debug=2, $from=['support@daghq.com' => 'SimpleCad'], $host='mail.daghq.com', $user='support@daghq.com', $password='Cartarman1', $port='465') {
+		public static function sendMail($to, $subject, $body, $reply=['accounts@txstaterp.com' => 'SimpleCad Support'], $debug=2, $from=['accounts@txstaterp.com' => 'SimpleCad'], $host='mail.txstaterp.com', $user='accounts@txstaterp.com', $password='Cartarman1', $port='465') {
 			// Load Composer's autoloader
 			require 'vendor/autoload.php';
 
@@ -85,9 +85,9 @@
 			    $mail->Body    = $body;
 
 			    $mail->send();
-			    echo 'Message has been sent';
+			    return true;
 			} catch (Exception $e) {
-			    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+			    return false;
 			}
 		}
 		

@@ -120,7 +120,7 @@
 
 					$code = md5(uniqid() . $admin_username . $admin_email);
 					$admin_password = password_hash($admin_password, PASSWORD_DEFAULT);
-					
+
 					$sql = "INSERT INTO users (user_username, user_email, user_password, user_code, user_valid, user_discord, user_membership) VALUES ('$admin_username', '$admin_email', '$admin_password','$code', 1, 'None Provided', 'Admin')";
 					mysqli_query($con, $sql);
 
@@ -174,9 +174,9 @@
 
 									$to = $admin_email;
 
-						Helper::sendMail($to, $subject, $body);
-
-						// Helper::Redirect('index');
+						if(Helper::sendMail($to, $subject, $body)) {
+							Helper::Redirect('index');
+						}
 				}
 			} 
 		} 
